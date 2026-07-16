@@ -1,0 +1,73 @@
+body{
+    font-family: system-ui, sans-serif;
+    margin: 20px auto;
+}
+.pricing-cards {
+    display: flex;
+    gap:25px;
+    margin: 30px 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.card-content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+.basic,.standard,.premium {
+display: flex;
+flex-direction: column;
+border: 1px solid purple;
+border-radius: 15px;
+box-shadow: 0px 4px 10px purple;
+flex: 1;
+padding: 0px 20px 20px;
+text-align: center;
+min-width: 200px;
+max-width: 300px;
+}
+.plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;   /* stack items vertically, like a normal list */
+    align-items: center; 
+    padding: 15px 0px;
+    margin: 0;     
+}
+.plan-name {
+    color: blueviolet;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 2px solid purple;
+    padding-bottom: 10px;
+    
+}
+.plan-price{
+    font-size: 40px;
+    color:green;
+    font-weight: normal;
+}
+.purchase{
+    margin-top: auto;
+    align-self: center;
+    width: 50%;
+    height: 50px;
+    border: 1px solid gold;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 5px 5px;
+    background-color: goldenrod;
+    box-shadow: 0px 4px 10px rgb(151, 237, 151);
+    
+}
+.standard {
+    border: 2px solid goldenrod;
+    box-shadow: 0px 4px 10px gold;
+    transition: 0.2s;
+}
+.standard:hover {
+    
+    transform: scale(1.05) translateY(-4px)
+}

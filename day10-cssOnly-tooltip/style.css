@@ -1,0 +1,38 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+   margin: 150px 50px;
+}
+.tooltip-wrapper {
+    position: relative;
+    width:200px;
+}
+.tooltip-box {
+    position: absolute;
+    visibility: hidden;
+    transition: 0.35s;
+    opacity: 0;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+.tooltip-wrapper:hover .tooltip-box {
+    opacity: 1;
+    visibility: visible;
+}
+.tooltip-box::after {
+    content: "";
+    position: absolute;
+    top:100%;
+    left:50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+
+}

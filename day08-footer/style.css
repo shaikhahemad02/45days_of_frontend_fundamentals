@@ -1,0 +1,61 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+footer{
+    border-top: 2px solid rgb(74, 165, 245);
+    border-radius: 3px 3px 3px 3px;
+    background-color: aliceblue;
+    padding: 0px 0px 20px;
+    box-shadow: 2px 1px 1px 2px rgb(244, 230, 230);
+}
+h4 {
+    font-size: 20px;
+    color:rgb(74, 165, 245);
+}
+.copyright-text {
+    color:rgb(74, 165, 245);
+    font-size: medium;
+}
+.footer-column {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    gap: 7px;
+    flex-direction: column;
+}
+.footer-col ul li a {
+    text-decoration: none;
+    color: rgba(0,0,0,0.7);
+}
+.footer-col ul li a:hover {
+    color: rgb(74, 165, 245);
+    text-decoration:underline;
+}
+.footer-copyright {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+}
+img{
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+.socials-bottom {
+    display: flex;
+    gap:20px;
+}
+.socials-bottom a img:hover {
+    background-color:  rgb(74, 165, 245);
+    box-shadow: 2px 1px 1px 2px rgb(162, 162, 240);
+    transform: translateY(-6px);
+}

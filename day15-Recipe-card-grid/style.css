@@ -1,0 +1,29 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    padding: 12px;
+}
+.recipe-card {
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0px 1px 1px 1px rgba(207, 206, 206, 0.355);
+    text-align: center;
+    overflow: hidden;
+}
+.recipe-img-wrapper {
+    overflow: hidden;
+}
+.recipe-img-wrapper img {
+    display:block;
+    width: 100%;
+    height: 300px;
+    transition: transform 0.4s;
+    object-fit: cover;
+}
+.recipe-img-wrapper:hover img {
+transform: scale(1.10);
+}
