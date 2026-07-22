@@ -1,0 +1,186 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+     margin: 0;
+    background-image: linear-gradient(60deg,#ffd1663e,#0716e12b);
+}
+h2 {
+    font-size: 40px;
+    color: #212529;
+}
+h3 {
+    font-size: 24px;
+    color: #212529;
+}
+.hero {
+    background-image:linear-gradient(#f8f9fa48,#f8f9fa48), url("/images/AirDevBackground.png");
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    align-content: center;
+    height: 70vh;
+}
+.hero-title {
+    font-size: 80px;
+    color: #212529;
+}
+.hero-description {
+    font-size: 25px;
+    color: #212529;
+    font-weight: 600;
+    padding-bottom: 50px;
+}
+.hero-get-started {
+    font-size: 35px;
+    font-weight: normal;
+    color: #212529;
+    text-decoration: none;
+    padding: 15px;
+}
+.hero-get-started:hover {
+    background-color: #ffd16672;
+    border-bottom: 3px solid #ffd166;
+}
+.features, .pricing{
+    box-sizing: border-box;
+    padding: 50px 0px 0px;
+    text-align: center;
+}
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 250px;
+    padding: 10px;
+    border-radius: 12px;
+    background-image:linear-gradient(110deg, #95D5B2,#2D6A4F);
+    box-shadow: 0px 0px 5px 5px #95d5b2ae;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+}
+.feature-card:hover {
+    transform: translateY( -10px);
+}
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 20px;
+    margin: 30px;
+}
+.pricing-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 20px;
+    margin: 30px;
+}
+.pricing-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 12px;
+    background-image:linear-gradient(110deg, #95D5B2,#2D6A4F);
+    box-shadow: 0px 0px 5px 5px #95d5b2ae;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+
+}
+.hot-sale {
+    border: 2px solid #FFD166;
+    transform: scale(1.03);
+}
+/*
+.pricing-card:hover {
+    transform: translate(10px, -15px);
+}*/
+.price {
+    font-weight: bold;
+    font-size: 17px;
+}
+.short-note {
+    font-weight:500;
+    font-size: 17px;
+}
+.pricing-card ul {
+    list-style: none;
+    font-weight: lighter;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+ul li {
+    padding: 5px;
+}
+.pricing-btn {
+    margin-top: auto;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1.5px solid green;
+    background-color: #055d352a;
+    width: 35%;
+    cursor: pointer;
+    transition: .25s;
+}
+.pricing-btn:hover {
+    background-color: #2D6A4F;
+    color: white;
+    box-shadow: 0px 3px 3px   #FFD166;
+    transform: translateY(-5px);
+}
+img {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+img:hover  {
+  
+    background-color: #2D6A4F;
+    color: white;
+    border-radius: 50%;
+    box-shadow: 0px 3px 3px   #FFD166;
+    transform: translateY(-5px);
+}
+.footer {
+    border-top: 3px solid #2D6A4F;
+    border-radius: 8px 8px 0px;
+    background-image: linear-gradient(rgb(222, 248, 222),rgb(177, 247, 177));
+    padding: 0px 40px;
+}
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-bottom ul {
+    list-style: none;
+    display: flex;
+    
+}
+.footer-link-wrapper {
+    display: flex;
+    justify-content: space-around;
+    
+}
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.footer-links li{
+    padding: 5px 0px;
+    box-sizing: border-box;
+}
+.footer-links li a {
+    text-decoration: none;
+    color: #212529;
+}
+.footer-links li:hover {
+    border-bottom: 2px solid #2D6A4F;
+    color: #212529;
+    box-shadow: 0px 1.5px 0px   #FFD166;
+}

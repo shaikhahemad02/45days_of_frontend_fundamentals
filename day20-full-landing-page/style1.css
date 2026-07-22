@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --bg-deep: #0B1120;
+    --bg-panel: #121A2E;
+    --bg-panel-alt: #17213A;
+    --accent-amber: #FFB347;
+    --accent-cyan: #5EEAD4;
+    --text-primary: #E7ECF5;
+    --text-secondary: #93A0B8;
+    --border-line: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* ---------- section divider (the "code comment" signature element) ---------- */
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent-cyan);
+}
+
+.section-divider::before {
+    content: "//";
+    opacity: 0.6;
+}
+
+.section-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-image: linear-gradient(90deg, var(--border-line) 50%, transparent 50%);
+    background-size: 8px 1px;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 0 20px;
+    background-image:
+        linear-gradient(var(--border-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: 24%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-amber);
+    opacity: 0.45;
+}
+
+.hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--accent-cyan);
+    margin-bottom: 22px;
+}
+
+.hero-eyebrow::before {
+    content: "● ";
+    color: var(--accent-cyan);
+}
+
+.hero-title {
+    font-size: 72px;
+    margin-bottom: 18px;
+}
+
+.hero-description {
+    color: var(--text-secondary);
+    font-size: 19px;
+    font-weight: 400;
+    max-width: 520px;
+    margin: 0 0 36px;
+}
+
+.hero-get-started {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--bg-deep);
+    background: var(--accent-amber);
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.hero-get-started:hover {
+    background: var(--accent-cyan);
+    transform: translateY(-3px);
+}
+
+/* ---------- features ---------- */
+
+.features {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+}
+
+.feature-heading {
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.feature-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-top: 2px solid var(--accent-cyan);
+    border-radius: 6px;
+    padding: 22px 20px;
+    transition: 0.25s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-top-color: var(--accent-amber);
+}
+
+.feature-tag {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--accent-cyan);
+    margin-bottom: 12px;
+}
+
+.feature-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.feature-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* ---------- pricing ---------- */
+
+.pricing {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 90px;
+}
+
+.pricing-heading {
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pricing-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+.pricing-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 6px;
+    padding: 26px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.pricing-card--featured {
+    border-color: var(--accent-amber);
+}
+
+.pricing-card--featured::before {
+    content: "MOST POPULAR";
+    position: absolute;
+    top: -11px;
+    left: 24px;
+    background: var(--accent-amber);
+    color: var(--bg-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 2px;
+}
+
+.pricing-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-cyan);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.pricing-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: var(--accent-amber);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.short-note {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 18px;
+}
+
+.pricing-card ul {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 18px 0 0;
+    border-top: 1px dashed var(--border-line);
+    font-size: 13.5px;
+    color: var(--text-secondary);
+}
+
+.pricing-card ul li {
+    padding: 5px 0;
+}
+
+.pricing-card ul li::before {
+    content: "› ";
+    color: var(--accent-cyan);
+}
+
+.pricing-btn {
+    margin-top: auto;
+    background: transparent;
+    border: 1px solid var(--accent-amber);
+    color: var(--accent-amber);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.pricing-btn:hover {
+    background: var(--accent-amber);
+    color: var(--bg-deep);
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+    border-top: 1px solid var(--border-line);
+    background: var(--bg-panel-alt);
+    padding: 60px 20px 30px;
+}
+
+.footer-link-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 50px;
+}
+
+.links-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    padding: 6px 0;
+}
+
+.footer-links li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.footer-links li a:hover {
+    color: var(--accent-amber);
+}
+
+.footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-line);
+    padding-top: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.copyright {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.copyright::before {
+    content: "● ";
+    color: var(--accent-cyan);
+}
+
+.footer-social {
+    list-style: none;
+    display: flex;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-social img {
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    border: 1px solid var(--border-line);
+    transition: 0.2s;
+}
+
+.footer-social img:hover {
+    border-color: var(--accent-amber);
+    transform: translateY(-3px);
+}
