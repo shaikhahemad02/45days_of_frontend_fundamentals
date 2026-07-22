@@ -98,3 +98,44 @@ todoList.addEventListener('click', (e) => {
     }
 });
 
+/* ----- Image Slider ------- */
+const slideImages = document.querySelectorAll('.slide');
+const btnPrev = document.querySelector('.prev');
+const btnNext = document.querySelector('.next');
+const sliderDots = document.querySelector('.slider-dots');
+let currentSlideIndex = 0;
+
+function showSlideToggle (index) {
+   slideImages.forEach((s, i) => s.classList.toggle('active', i === index));
+   imageDots.forEach((d,i) => d.classList.toggle('active', i === index));
+   /*
+   slideImages.forEach((s, i)=> {
+    if( i === index) {
+        s.classList.add('active');
+    } else {
+        s.classList.remove('active'); }
+   })*/
+}
+btnNext.addEventListener('click', () => { 
+    currentSlideIndex =(currentSlideIndex + 1) % slideImages.length;
+    showSlideToggle(currentSlideIndex);
+});
+btnPrev.addEventListener('click', () => { 
+    currentSlideIndex = ( currentSlideIndex - 1 + slideImages.length) % slideImages.length;
+    showSlideToggle(currentSlideIndex);
+});
+
+// image change based on dot click.
+const imageDots = sliderDots.childNodes;
+console.log(imageDots);
+imageDots.forEach( (d, i) => {
+    d.addEventListener('click',()=> {
+        currentSlideIndex = i;
+        showSlideToggle(currentSlideIndex);
+    })
+});
+// continuous image change based on time
+setInterval(() => {
+  currentSlideIndex = ( currentSlideIndex + 1) % slideImages.length;
+  showSlideToggle(currentSlideIndex);
+}, 1500);

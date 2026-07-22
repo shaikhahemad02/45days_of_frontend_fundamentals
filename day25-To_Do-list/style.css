@@ -554,6 +554,7 @@ h1, h2, h3 {
     background: var(--accent-amber);
     color: var(--bg-deep);
 }
+
 /* --------- faq -------------- */
 .faq-wrapper.hidden {
     display: none;
