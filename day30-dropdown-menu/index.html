@@ -9,9 +9,20 @@
 </head>
 
 <body>
-    <button class="showFaq" type="button">FAQ</button>
+    <div class="settings">
+    <button class="setting-btn" type="button">⚙️</button>
+    <div class="menu">
+        <button class="mode-toggle" type="button"><img src="/images/night.png" alt="theme"></button>
+        <button class="showFaq" type="button">FAQ</button>
+        <a href="#features" class="link">Features</a>
+        <a href="#demo" class="link">See It in Action</a>
+        <a href="#process" class="link">Process</a>
+        <a href="#pricing" class="link">Pricing</a>
+        <a href="#appr-section" class="link">Our Stories</a>
+        <a href="#contact-us" class="link">Get in Touch</a>
+    </div>
+    </div>
     <section class="hero">
-        <button class="mode-toggle" type="button">🌙</button>
         <span class="hero-eyebrow">SYSTEM STATUS: ONLINE</span>
         <h1 class="hero-title">Air Dev, Inc.</h1>
         <p class="hero-description">Build, ship, and scale your ideas faster than ever — all in one place.</p>
@@ -20,7 +31,7 @@
 
     <div class="section-divider">01&nbsp;&nbsp;FEATURES</div>
 
-    <section class="features">
+    <section class="features" id="features">
         <h2 class="feature-heading">Why Choose Us?</h2>
         <div class="feature-grid">
             <div class="feature-card">
@@ -70,7 +81,7 @@
     </section>
     <div class="section-divider">02&nbsp;&nbsp;LIVE DEMO</div>
 
-    <section class="demo">
+    <section class="demo" id="demo">
         <h2 class="pricing-heading">See It In Action</h2>
         <p class="demo-subtext">A live preview of the task automation tool our clients use daily.</p>
 
@@ -91,7 +102,7 @@
         </div>
     </section>
     <div class="section-divider">03&nbsp;&nbsp;PROCESS</div>
-    <section class="process">
+    <section class="process" id="process">
         <h2 class="pricing-heading">How We Work</h2>
         <div class="tab-buttons">
             <button class="tab-btn active" data-tab="discover" type="button">discover.js</button>
@@ -122,7 +133,7 @@
     </section>
     <div class="section-divider">04&nbsp;&nbsp;PRICING</div>
 
-    <section class="pricing">
+    <section class="pricing" id="pricing">
         <h2 class="pricing-heading">Our Plans</h2>
         <div class="pricing-box">
             <div class="pricing-card">
@@ -166,7 +177,7 @@
         </div>
     </section>
     <div class="section-divider">05&nbsp;&nbsp;ACHIEVMENTS & APPRECIATIONS</div>
-    <section class="appr-section">
+    <section class="appr-section" id="appr-section">
         <h2 class="pricing-heading">Client Success Stories</h2>
         <div class="image-slider">
             <div class="slide active"><img src="/images/appr1.png" alt="slide1"></div>
@@ -187,11 +198,11 @@
     <div class="faq-wrapper">
         <div class="section-divider">06&nbsp;&nbsp;FAQ</div>
 
-        <section class="accordion">
+        <section class="accordion" id="accordion">
             <h2 class="pricing-heading">FAQ</h2>
             <div class="faq-search-cont">
-            <input type="text" class="faq-search" placeholder="Search FAQs...">
-            <button type="button" class="clear-faq-search" >❌</button>
+                <input type="text" class="faq-search" placeholder="Search FAQs...">
+                <button type="button" class="clear-faq-search">❌</button>
             </div>
             <span class="no-results">No questions found</span>
             <div class="accordion-item">
@@ -264,7 +275,7 @@
         </section>
     </div>
     <div class="section-divider">07&nbsp;&nbsp;CONTACT</div>
-    <section class="contact-us">
+    <section class="contact-us" id="contact-us">
         <h2 class="pricing-heading">Get In Touch</h2>
         <form class="contact-form">
             <div class="form-group">
@@ -282,8 +293,8 @@
                 <textarea id="contact-message" class="char-textarea" maxlength="280" rows="5"
                     placeholder="Tell us about your project..."></textarea>
                 <div class="message-support-text">
-                <span class="field-error"></span>
-                <span class="char-count">0/280</span>
+                    <span class="field-error"></span>
+                    <span class="char-count">0/280</span>
                 </div>
             </div>
             <div class="submit-btn-wrapper">
@@ -338,12 +349,13 @@
             <h3 class="modal-title">Get Started with <span class="modal-plan-name"> - </span>
             </h3>
             <form action="" class="modal-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="text" placeholder="You@example.com" required>
-            <button class="btn-type1 btn-modal-submit" type="submit">Confirm</button></form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="text" placeholder="You@example.com" required>
+                <button class="btn-type1 btn-modal-submit" type="submit">Confirm</button>
+            </form>
         </div>
     </div>
-    <script src="liveSearch.js"></script>
+    <script src="dropdown.js"></script>
 </body>
 
 </html>
