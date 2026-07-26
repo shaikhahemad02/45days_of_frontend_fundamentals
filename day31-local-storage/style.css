@@ -484,6 +484,40 @@ h1, h2, h3 {
     color: var(--accent-amber);
 }
 
+.filter-task {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 25px;
+}
+.filter-btn {
+    margin-top: auto;
+    background: transparent;
+    border: 1px solid var(--accent-amber);
+    color: var(--accent-amber);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 30px;
+    
+}
+.filter-btn:hover {
+        background: var(--accent-amber);
+    color: var(--bg-deep);
+}
+.filter-btn.active {
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+.filter-btn.active:hover {
+    background-color: var(--accent-cyan);
+    color: var(--bg-deep);
+}
 /* -- tab component --- */
 .process {
     max-width: 1100px;

@@ -97,7 +97,11 @@
                     <input type="text" class="todo-input" placeholder="Add a new task...">
                     <button class="todo-add-btn" type="button">ADD</button>
                 </div>
-                
+                <div class="filter-task">
+                    <button class="filter-btn active" data-filter="all" type="button">All</button>
+                    <button class="filter-btn " data-filter="active" type="button">Active</button>
+                    <button class="filter-btn " data-filter="completed" type="button">Completed</button>
+                </div>
                 <ul class="todo-list"></ul>
             </div>
         </div>
@@ -356,7 +360,7 @@
             </form>
         </div>
     </div>
-    <script src="dropdown.js"></script>
+    <script src="localStorage.js"></script>
 </body>
 
 </html>
