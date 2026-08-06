@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="weather-cities-list">
+        <button type="button" class="city-btn active" data-city="newyork">New York</button>
+        <button type="button" class="city-btn" data-city="london">London</button>
+        <button type="button" class="city-btn" data-city="tokyo">Tokyo</button>
+    </div>
+    <div class="weather-card">
+        <h3 class="city"></h3>
+        <span class="temp"></span>
+        <span class="cond"></span>
+        <span class="feels-like"></span>
+        <div class="parameter">
+            <span class="humidity"></span>
+            <span class="separator"></span>
+            <span class="wind"></span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

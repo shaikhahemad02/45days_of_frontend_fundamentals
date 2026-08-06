@@ -1,0 +1,145 @@
+:root {
+    --bg-deep: #0B1120;
+    --bg-panel: #121A2E;
+    --bg-panel-alt: #17213A;
+    --accent-amber: #FFB347;
+    --accent-cyan: #5EEAD4;
+    --text-primary: #E7ECF5;
+    --text-secondary: #93A0B8;
+    --border-line: rgba(255, 255, 255, 0.08);
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    margin: 100px auto;
+    padding: 0;
+    background-image: linear-gradient( var(--border-line) 1px, transparent 1px),
+                     linear-gradient(90deg, var(--border-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+
+}
+.weather-cities-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.city-btn {
+    width: 150px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background-color: transparent;
+    color: var(--accent-amber);
+    border: 1px solid var(--accent-amber);
+    padding: 10px 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.city-btn:hover {
+    background-color: var(--accent-amber);
+    color: var(--bg-deep);
+}
+.city-btn.active {
+    background-color: transparent;
+    color: var(--accent-cyan);
+    border: 1px solid var(--accent-cyan);
+}
+.city-btn.active:hover {
+    background-color: var(--accent-cyan);
+    color: var(--bg-deep);
+}
+.weather-card {
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  padding-top: 0px;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  text-align: left;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ☀️ Sunny */
+.weather-card.sunny {
+  background: linear-gradient(135deg, #FFD54F 70%, #FFA726 30%);
+  color: #fff;
+  box-shadow: 0 8px 32px 0 rgba(255, 193, 7, 0.4);
+}
+
+/* ☁️ Cloudy */
+.weather-card.cloudy {
+  background: linear-gradient(135deg, #B0BEC5 70%, #78909C 30%);
+  color: #f5f5f5;
+  box-shadow: 0 8px 32px 0 rgba(120, 144, 156, 0.4);
+}
+
+/* 🌧️ Rainy */
+.weather-card.rainy {
+  background: linear-gradient(135deg, #4FC3F7 70%, #0288D1 30%);
+  color: #e3f2fd;
+  box-shadow: 0 8px 32px 0 rgba(2, 136, 209, 0.4);
+}
+
+/* Optional: temperature styling */
+.weather-card .temperature {
+  font-size: 48px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.weather-card .condition {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.city {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    vertical-align: center;
+}
+.temp{
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.cond {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.feels-like {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.parameter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-top: 2px solid var(--text-secondary);
+    padding-top: 20px;
+}
+.separator {
+    width: 2px;
+    height: 100%;
+    background-color: var(--text-secondary);
+}
