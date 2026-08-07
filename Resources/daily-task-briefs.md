@@ -580,5 +580,229 @@ From this point forward, every exercise is designed to be embedded directly into
 
 ---
 
-## Day 27 — *(upcoming)*
+## Day 27 — Modal / Popup Window
+**Phase:** 3 (JavaScript — DOM Basics)
+**Status:** ✅ Complete
+
+**Brief:** A modal that opens over page content, closable via a × button, clicking the backdrop, or pressing Escape — but not by clicking inside the modal box itself.
+
+**Requirements:**
+- Modal hidden by default, opens on trigger
+- Displays dynamic content based on which trigger was clicked
+- Closes via × button, overlay click, and Escape key
+- Clicking inside the modal box must not close it
+
+**Incorporated directly into the real site:** wired to all three pricing "PURCHASE" buttons as a "Request a Quote" flow — clicking any plan opens a modal confirming that specific plan (dynamically read from the clicked card) with a name/email form, making the pricing section functionally complete rather than just visually complete.
+
+**What was practiced:** `e.target === element` to distinguish "clicked the backdrop itself" from "clicked something nested inside it" (since nested clicks still bubble up to a parent listener), reusing the `keydown` + `e.key` pattern from Day 25 for a global Escape-to-close listener attached to `document` (not the modal itself), and `.closest()` again to read dynamic data (which plan was clicked) from the triggering button's ancestor card.
+
+**Bugs fixed:**
+1. `e.target === 'Escape'` — compared a DOM element (`e.target`) to a string, which can never be true; corrected to `e.key === 'Escape'` (the actual pressed-key property, not the event's target element).
+2. A related misconception: attempting to listen for `keydown` directly on the modal `<div>` doesn't work regardless, since `keydown` only fires on whatever element currently holds keyboard focus — a plain, non-interactive `<div>` isn't focusable by default, so it would essentially never receive the event. `document` is the correct listening target for "global" keyboard shortcuts for this reason.
+3. A single shared `classList.toggle('open')` function was being called from multiple different close-triggers (×, overlay click, Escape) alongside the one open-trigger — meaning any close-trigger firing while the modal was already closed would incorrectly *open* it. Fixed by splitting into two explicit, single-purpose functions (`openModalOverlay()` / `hideModalOverlay()`), each called only from its correct trigger, removing the ambiguity of a shared toggle.
+
+**Outstanding minor item (carried from Day 26, not yet addressed):** the image slider's dot-collection still uses `.childNodes` rather than `.children`.
+
+**Final result:**
+![Day 27 final — Growth Package modal open over the pricing section](screenshots/day27-modal-popup.png)
+
+---
+
+## Day 28 — Form Validation
+**Phase:** 3 (JavaScript — DOM Basics)
+**Status:** ✅ Complete
+
+**Brief:** Real client-side validation on the Contact form — required fields, valid email format, clear per-field error messages, blocking submission until valid.
+
+**Requirements:**
+- Name, Email, Message all required (whitespace-only counts as empty)
+- Email must match a valid-looking pattern
+- Invalid submission shows specific errors per field and does not proceed
+- Fixing a field clears its error
+- Invalid fields visually distinguished (red border)
+
+**What was practiced:** basic regular expressions (`/^[^\s@]+@[^\s@]+\.[^\s@]+$/` + `.test()`) for shape-validating a string without needing full regex mastery, reusable `showError()`/`clearError()` helper functions shared across all three fields, `.trim()` correctly catching whitespace-only input (verified live — a message containing only a space showed `1/280` in the character count yet still correctly triggered "Message cannot be empty"), and `change` event listeners for near-live per-field feedback in addition to submit-time validation.
+
+**Bug fixed:** a trailing `contactForm.submit()` call after the success `alert()` — calling `.submit()` programmatically bypasses the `submit` *event* (no infinite loop) but performs actual native form submission/navigation, undoing the earlier `e.preventDefault()` and reloading the page immediately after the simulated success message. Removed, since `preventDefault()` alone is sufficient to keep the user on the page.
+
+**Noted for later (not required today):** validation logic exists in two places — the submit-time `validateContactForm()` and each field's inline `change` listener — both correctly sharing the `showError`/`clearError` helpers, but with the actual rule-checking duplicated rather than extracted into one reusable per-field validator function.
+
+**Final result:**
+![Day 28 final — all three fields showing validation errors](screenshots/day28-form-validation.png)
+
+---
+
+## Day 29 — Live Search Filter
+**Phase:** 3 (JavaScript — DOM Basics)
+**Status:** ✅ Complete
+
+**Brief:** Type in a search box, list filters live with no reload — applied to filtering the FAQ questions.
+
+**Requirements:**
+- Search input above the FAQ list
+- Typing filters visible questions live, case-insensitive
+- Non-matches hide, matches stay visible
+- Clearing the search restores all items
+- Zero matches shows a "No results found" message
+
+**Extra beyond the brief:** a clear (×) button that appears only while there's search text, plus a dynamic "No results found for [query]" message that echoes back what was searched.
+
+**What was practiced:** `.toLowerCase()` for case-insensitive comparison, `.includes(substring)` for simple substring matching (versus regex, used the prior day for structural pattern matching), the ternary operator (`condition ? a : b`) as a compact alternative to a short if/else, and a running counter pattern for detecting a "zero results" condition after a loop completes.
+
+**Bugs fixed:**
+1. `querySelector('h3')` inside each FAQ item returned `null` (the question text actually lives in `.accordion-header`, not an `<h3>`, within this component) — calling `.textContent` on that `null` threw an error that silently killed the whole function on every keystroke, so the list never visibly filtered at all. Fixed by targeting the correct element (`.accordion-header`). Diagnosed by checking the browser console for the thrown error, continuing the Day 23 habit of checking the console first when DOM code "does nothing."
+2. Programmatically setting `searchInput.value = ''` inside the clear button's handler does not fire the `input` event — so the filtering logic (which only lived inside the `input` listener) never re-ran, leaving previously-hidden items hidden even after the visible search box was cleared. Fixed by extracting the filtering logic into a standalone `filterFaqs(query)` function, callable directly from both the `input` listener and the clear button's `click` listener — the same "shared logic, multiple triggers" pattern as Day 27's modal open/close functions.
+
+**Final result:**
+![Day 29 final — zero-match state showing the dynamic "No results found" message](screenshots/day29-live-search-filter.png)
+
+---
+
+## Day 30 — Dropdown Menu (JS)
+**Phase:** 3 (JavaScript — DOM Basics)
+**Status:** ✅ Complete
+
+**Brief:** A click-triggered dropdown menu, closing on outside click — a smaller, inline pattern distinct from Day 17's CSS-only hamburger nav and Day 27's full-page modal.
+
+**Requirements:**
+- Trigger toggles a dropdown open/closed
+- Clicking outside the dropdown closes it
+- Clicking an option does something meaningful
+
+**Incorporated directly into the real site:** consolidated into a single "⚙️ Settings" dropdown in the top-right, replacing the previously separate floating theme-toggle and FAQ buttons — now also containing anchor links to every major page section (Features, Live Demo, Process, Pricing, Client Stories, Contact). A genuinely good UX simplification (one entry point instead of several competing floating buttons).
+
+**What was practiced:** `e.stopPropagation()` (prevents a trigger's own click from immediately bubbling up to a document-level "click outside closes it" listener and instantly re-closing what was just opened), `.contains(element)` (checks whether a clicked element is anywhere inside a container, more flexible than Day 27's exact `e.target === element` comparison for a multi-level-deep menu), and `scrollIntoView({ behavior: 'smooth', block: 'start' })` for programmatically jumping to a page section from a `<button>` click (since buttons, unlike `<a href="#id">`, get no automatic anchor-scroll behavior from the browser) — including only scrolling when a section is being *revealed*, not hidden, checked via the post-toggle class state.
+
+**Bugs fixed:**
+1. The six new navigation links pointed to `href="#section-name"` hashes with no matching `id` anywhere on the page (sections only had `class`, not `id`) — clicking any link did nothing. Fixed by adding matching `id` attributes to each target section.
+2. An image-path casing mismatch (`/Images/day.png` in JS vs. the real lowercase `/images/day.png` file) — worked locally only because the OS/dev server was case-insensitive; would silently 404 on most real hosting (Linux-based servers are case-sensitive). Corrected to match exactly.
+3. `.firstChild.src` to reach the icon `<img>` inside the toggle button — fragile in the same way as Day 26's `.childNodes` (only works with zero whitespace between tags in the HTML source); recommended `.querySelector('img')` instead for robustness against future reformatting.
+
+**Final result:**
+![Day 30 final — Settings dropdown open on dark theme](screenshots/day30-dropdown-menu.png)
+
+---
+
+## Day 31 — To-Do List (advanced — localStorage + filters)
+**Phase:** 4 (JS + Logic + Small State) — first day of Phase 4
+**Status:** ✅ Complete
+
+**Brief:** Upgrade Day 25's to-do widget with persistent state (localStorage) and All/Active/Completed filter tabs — the first "real state management" exercise of the course.
+
+**Requirements:**
+- Tasks persist across page reloads via localStorage
+- Filter tabs show only matching tasks
+- Add/remove/toggle-done all correctly update what's saved
+
+**The core conceptual shift:** moving from "the DOM is the only record of what tasks exist" (Day 25's approach) to "a JS array is the source of truth, and the DOM is rebuilt from it on every change" — `todos` array → `saveTodos()` → `renderTodos()`, in that order, for every mutation. This mirrors how real front-end frameworks (React, Vue) fundamentally operate.
+
+**What was practiced:** `localStorage.setItem`/`getItem` (string-only storage), `JSON.stringify`/`JSON.parse` for the required string ↔ object/array round-trip, `Date.now()` as a quick unique-id generator, `.filter()` for both removing an item and computing the active filter view, `.find()` for locating a specific object by property, and reading a numeric id back off a DOM element's `dataset` (always a string) via explicit conversion.
+
+**Real debugging chain — the most extensive of the course so far, worked through across five iterations:**
+1. **Fatal script-breaking errors** — `require(...)` (a Node.js-only feature, nonexistent in browser JS) and invalid object-literal syntax (`id = Date.now()` using assignment `=` instead of the required `:`) each independently halted the *entire* script from running, not just the to-do feature — reinforcing that a single syntax/reference error anywhere in a file can silently disable unrelated code elsewhere in the same file.
+2. **Undeclared variables** referencing DOM elements that had been removed during the rewrite (`todoInput`, `todoAddBtn`) — `ReferenceError`s.
+3. **`json.stringyfy`** — wrong casing on the global `JSON` object plus a misspelled method name (`stringify`).
+4. **Property-name mismatch** between what `addTodo` stored (`inputText` via shorthand) and what `renderTodos` read (`todo.text`).
+5. **Filter buttons never wired to clicks** — logic ran once at page load instead of on each click, and used a non-existent `.data` property instead of `.dataset`.
+6. **`removeTodo()`/`toggleTodo()` called with no `id` argument** — silently matched/found nothing, meaning removal appeared to work only because a full re-render briefly gave that illusion, while `toggleTodo` actually threw an error attempting `.done =` on `undefined`, invisibly aborting before ever reaching `saveTodos()`.
+7. **The final, subtlest bug: `Date(li.dataset.id)` instead of `Number(li.dataset.id)`** — `Date()` called without `new` ignores its argument entirely and always returns the current moment as a string, regardless of input; a classic "looks plausible, does something totally unrelated" JavaScript trap. Diagnosed by walking through the full string round-trip: `Date.now()` (number) → `dataset` (auto-converted to string) → needs `Number()` to convert back, not `Date()`.
+
+**Final result:**
+![Day 31 final — persisted tasks with mixed done/active states after reload](screenshots/day31-todo-advanced-localstorage.png)
+
+---
+
+## Day 32 — Calculator
+**Phase:** 4 (JS + Logic + Small State)
+**Status:** ✅ Complete
+
+**Brief:** A working calculator with number/operator buttons, a display, equals, clear, and correctly handled chained operations.
+
+**Incorporated directly into the real site (reframed):** built as a "Project Cost Estimator" instead of a classic numeric calculator — a base-package radio group (mutually exclusive) plus multi-select add-on checkboxes, live-calculating a running total. A stronger real-world fit for a dev agency site than a generic 0-9 grid, and reuses the Day 27 modal (clicking "Request This Estimate" opens the quote modal pre-filled with the selected package name).
+
+**Requirements delivered:**
+- Live total recalculated on every radio/checkbox change
+- Correct summation across one required base selection + any number of optional add-ons
+- Currency-formatted output
+- Integration with the existing quote-request modal
+
+**What was practiced:** `input[name="..."]:checked` (attribute selector + pseudo-class combination for finding the selected item in a radio group — `querySelector`, not `All`, since exactly one match is guaranteed by radio-button grouping semantics), `.toLocaleString()` for locale-formatted number display (e.g. `5300` → `"5,300"`), and reinforced the "closures capture variables by reference, not by value-at-definition-time" concept — a click handler defined *before* other `const` declarations later in the same file can still safely reference them, since the callback body only actually executes after the entire script has finished its initial top-to-bottom run.
+
+**Minor items noted (not blocking):** two content typos ("Rush Devlivery," "Estra Revison"), and a structural note that wrapping each individual radio/checkbox in its own separate `.estimator-group` (rather than one shared group per section) produces looser spacing than originally suggested — a legitimate stylistic choice, not a bug.
+
+**Final result:**
+![Day 32 final — live estimate total of $5,300 with Growth Package + two add-ons selected](screenshots/day32-calculator-estimator.png)
+
+---
+
+## Day 33 — Quiz App
+**Phase:** 4 (JS + Logic + Small State)
+**Status:** ✅ Complete
+
+**Brief:** Multiple questions shown one at a time, score tracked across the quiz, next/previous navigation, final results screen.
+
+**Incorporated directly into the real site (reframed):** built as an "Is Your Business Ready to Scale?" lead-generation quiz — 5 workflow-related questions, each answer worth 0-2 points, producing a "Growth Readiness Score" out of 10 with a tailored closing message aimed at nudging visitors toward contact/pricing.
+
+**Requirements delivered:**
+- Question array with per-option point values
+- One question rendered at a time, with a progress indicator ("Question N of 5")
+- Next requires an answer to be selected before advancing; validates and stores it
+- Previous navigates backward without re-validating
+- Final screen computed via `.reduce()` across all stored answers, with a retake option resetting all state
+
+**What was practiced:** structuring quiz content as an array of question objects (mirroring Day 31's array-of-objects pattern), dynamically rendering a fresh set of radio options per question, `parseInt`/`parseFloat` for converting a radio `value` (always a string) back to a usable number, and `.reduce()` — a new array method for collapsing a whole array down to one accumulated value (here, summing each question's earned points into a single total score).
+
+**Bug fixed:** `renderQuestions()` used `appendChild` to insert each question's option labels but never cleared the container first (missing the `.innerHTML = ''` step) — so every Next/Previous/Retake call kept *appending* new options on top of all previously-rendered ones, rather than replacing them, causing every prior question's options to visually accumulate together. The exact same class of bug already correctly avoided in Day 31's `renderTodos()` (which does clear its container first) — a good reminder that a working pattern from one feature doesn't automatically transfer to a new one without deliberately re-applying it.
+
+**Final result:**
+![Day 33 final — final question with no leftover options, results screen showing 7/10](screenshots/day33-quiz-app.png)
+
+---
+
+## Day 34 — Weather Card (static/mock data)
+**Phase:** 4 (JS + Logic + Small State)
+**Status:** ✅ Complete
+
+**Brief:** A weather display card — location, temperature, condition, detail stats — built entirely from mock data, with switching between multiple locations to turn it into real state-driven rendering practice rather than a flat one-off display. Built as a standalone exercise, not embedded in the Air Dev site.
+
+**Requirements delivered:**
+- City name, temperature, condition + icon, feels-like, humidity, wind
+- 3 switchable mock locations (New York, London, Tokyo) via buttons
+- Active-button state synced with displayed data
+
+**What was practiced:** an **object of objects keyed by name** (`mockWeatherData.newyork`, etc.) rather than an array — a genuinely new data-structure choice, appropriate when data needs to be looked up directly by a known key rather than searched/filtered by position, contrasted with the array-of-objects pattern used for `todos` (Day 31) and `questionArray` (Day 33). Reused the active-tab toggle pattern from Days 22/23 for location switching.
+
+**Notable technique:** an empty `<span class="separator">` styled purely via CSS (`background-color` + fixed width/height) used as a vertical divider between humidity and wind stats — a CSS-only alternative to typing a literal `|` character.
+
+**Unclaimed stretch goal (noted, not required):** per-condition visual theming (distinct accent colors for sunny/rainy/cloudy) was not implemented — all three locations currently share the same neutral card styling regardless of condition.
+
+**Final result:**
+![Day 34 final — New York selected, showing full weather card](screenshots/day34-weather-card.png)
+
+---
+
+## Day 35 — Digital Clock / Stopwatch
+**Phase:** 4 (JS + Logic + Small State)
+**Status:** ✅ Complete (self-initiated — user built this ahead of the brief being given, from the original 45-day plan)
+
+**Brief (inferred from the original plan):** a live-updating clock and a start/stop/reset/lap stopwatch, toggleable between the two.
+
+**Requirements delivered:**
+- Live clock updating every second via `setInterval`, with a 24hr/12hr format toggle
+- Stopwatch with Start/Stop/Reset/Lap, correctly disabling buttons based on running state
+- Lap list recorded and displayed, plus laps persisted to `localStorage` (unprompted addition, matching Day 31's persistence pattern)
+- Clock/Stopwatch view toggle reusing the established active-tab pattern
+
+**What was practiced:** `setInterval` for a recurring live update (clock ticking every second, stopwatch counting elapsed seconds), `Date` methods (`getHours`/`getMinutes`/`getSeconds`, `.toLocaleTimeString()` with the `hour12` option for format switching), `.padStart(2, '0')` for consistent two-digit time formatting, math for converting a raw elapsed-seconds count into hours/minutes/seconds (`Math.floor`, modulo), and disabling/enabling a cluster of related buttons based on running state.
+
+**Bug diagnosed (user's own question, resolved):** a class-name casing mismatch (`.lapscard` in CSS vs. `class="lapsCard"` in HTML) meant the intended flex-column + scroll styling never applied at all — explaining both reported symptoms at once: laps only appeared to stack correctly because a manual `display: block` on individual lap spans coincidentally mimicked block-stacking behavior (not real flex layout), and no scrollbar ever appeared because `overflow-y: scroll` was never actually being applied to begin with. Also flagged a related, non-obvious CSS fact: `max-height` as a percentage only resolves against a parent with an explicit height — since the ancestor chain here uses `height: auto`, a percentage `max-height` wouldn't meaningfully constrain the element even after the class-name typo was fixed, requiring a fixed pixel value instead.
+
+**Final result:**
+![Day 35 final — clock view (24hr)](screenshots/day35-digital-clock-stopwatch-1.png)
+![Day 35 final — clock view (12hr, AM/PM)](screenshots/day35-digital-clock-stopwatch-2.png)
+![Day 35 final — stopwatch with recorded laps](screenshots/day35-digital-clock-stopwatch-3.png)
+
+---
+
+## Day 36 — *(upcoming)*
 *To be filled in when started.*

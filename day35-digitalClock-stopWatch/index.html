@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock and Stop Watch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="clock-card">
+        <div class="toggle">
+            <button type="button" class="btn-clock active">Clock</button>
+            <button type="button" class="btn-stopwatch">Stop Watch</button>
+        </div>
+        <div class="clock active">
+            <span class="clockText"></span>
+            <div class="clock-format">
+                <button type="button" class="btn-24hr active">24 Hr</button>
+                <button type="button" class="btn-12hr">12 Hr</button>
+            </div>
+        </div>
+        <div class="stopwatch">
+           <span class="stopWatchText">00:00:00</span>
+            <div class="sw-StartStop">
+                <button type="button" class="btn-start">Start</button>
+                <button type="button" class="btn-stop" disabled>Stop</button>
+                <button type="button" class="btn-reset" disabled>Reset</button>
+                <button type="button" class="btn-lap" disabled>Lap</button>
+            </div> 
+            <div class="lapsCard">
+              
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+body {
+    height: 50vh;
+    justify-items: center;
+    margin-top: 100px;
+}
+.clock-card {
+
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    background-color: rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5),
+                inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    
+}
+.toggle {
+    padding: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid rgba(0, 0, 0, 1);
+    box-sizing: border-box;
+}
+.toggle button {
+    width: 50%;
+    padding: 10px;
+    padding-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.toggle button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.toggle button.active {
+    color: rgb(5, 181, 5);
+    font-weight: 700;
+}
+.clock {
+    display: None;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+.clock.active {
+    display: flex;
+}
+.clockText {
+    letter-spacing: 2px;
+}
+.clock button {
+    width: 100px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.07);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5),
+                inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    
+    box-sizing: border-box;
+}
+.clock button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: 17px;
+}
+.clock button.active {
+    color: rgb(5, 181, 5);
+    font-weight: 500;
+}
+.stopwatch {
+    display:none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+.sw-StartStop {
+    padding-bottom: 20px;
+}
+
+.stopwatch.active {
+    display: flex;
+}
+.stopwatchText {
+    letter-spacing: 3px;
+}
+.stopwatch button {
+    width: 80px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.07);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5),
+                inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+                
+}
+.stopwatch button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: 17px;
+}
+.stopwatch button.active {
+    color: rgb(5, 181, 5);
+    font-weight: 500;
+}
+.stopwatch button:disabled {
+    cursor: not-allowed;
+}
+.lapsCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 150px;
+    gap: 5px;
+    overflow-y: auto;
+    text-align: center;
+}
+.lap-time  {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 300;
+    border: none;
+    box-sizing: border-box;
+    flex: 1;
+}
