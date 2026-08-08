@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&display=swap");
+.quote,.background {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 600px;
+    min-height: 200px;
+
+}
+.background {
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.quote {
+    background-color: rgba(255, 255, 255, 0.301);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding: 2rem;
+    padding-top: 1rem;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
+}
+.quoteicon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 3rem;
+    color: #f39c12;
+    margin-bottom: 1rem;
+    font-family: georgia, "Times New Roman", Times, serif;
+    width: 100%;
+}
+
+.quoteicon::before,
+.quoteicon::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    align-self: center;
+}
+.quoteText {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+    color: #333;
+}
+.author {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 1rem;
+    border-top: 1px solid #f39d126d;
+    padding-top: 5px;
+}
+.btnQuote {
+    display: block;
+    margin: 2rem auto;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btnQuote:hover {
+    background-color: white;
+    color: #f39c12;
+    border: 2px solid #f39c12;
+}
